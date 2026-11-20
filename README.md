@@ -26,7 +26,7 @@ The page introduces YRT Production, presents its services and past work, explain
 | A | About section and company highlights |
 | B | Barlow Condensed display typography |
 | C | Contact and project-brief section |
-| D | Dark theme (default theme) |
+| D | Dark-only color scheme |
 | E | Esports portfolio and event cards |
 | F | Footer with navigation and contact links |
 | G | Google Fonts integration |
@@ -34,15 +34,15 @@ The page introduces YRT Production, presents its services and past work, explain
 | I | Instagram links for work and inquiries |
 | J | Jersey-order process and checklist |
 | K | Keyboard-accessible focus outlines and Escape-to-close menu |
-| L | Local image assets and browser theme persistence |
-| M | Mobile navigation menu and mobile theme toggle |
+| L | Local image assets |
+| M | Mobile navigation menu |
 | N | Navigation links, active-section state, and next-section overlay |
 | O | Open-in-new-tab external links |
 | P | Page metadata for title, description, favicon, and browser theme color |
 | Q | Quick links to project inquiry channels |
 | R | Reduced-motion support |
 | S | Six service cards |
-| T | Theme switching between dark and light |
+| T | Typography and visual treatments |
 | U | User-interface animations and scroll reveals |
 | V | Viewport-specific layouts and breakpoints |
 | W | Work gallery with event imagery |
@@ -59,7 +59,7 @@ project-root/
 ├── PROJECT-DOCUMENTATION.md
 └── img/
     ├── logo.jpg
-    ├── production-hero.jpg
+    ├── production-hero.webp
     ├── event-badda.jpg
     ├── event-finals.jpg
     ├── event-ghost.jpg
@@ -71,9 +71,9 @@ project-root/
 ### File responsibilities
 
 - **`index.html`** contains page content, semantic structure, SVG icons, metadata, links, and the site's inline JavaScript.
-- **`style.css`** contains the base design, theme overrides, responsive layouts, and motion effects.
+- **`style.css`** contains the dark design system, responsive layouts, and motion effects.
 - **`img/logo.jpg`** is used for the header and footer brand marks and the favicon.
-- **`img/production-hero.jpg`** is used for the hero background and the About image.
+- **`img/production-hero.webp`** is used for the hero background and the About image.
 - **`img/event-*.jpg`** files are used by the portfolio cards.
 - **`PROJECT-DOCUMENTATION.md`** is this project guide.
 
@@ -84,7 +84,7 @@ project-root/
 - HTML5 landmarks and elements
 - CSS custom properties, Grid, Flexbox, gradients, filters, and media queries
 - Vanilla JavaScript; no frontend framework or JavaScript package is required
-- Inline SVG for theme, service, and play icons
+- Inline SVG for service and play icons
 
 ### External requests
 
@@ -98,7 +98,7 @@ The site does not use a CMS, analytics SDK, payment provider, API, backend, or f
 
 The page is arranged as a single document with hash-link navigation:
 
-1. **Header and navigation** — brand, desktop links, theme switch, and compact mobile controls.
+1. **Header and navigation** — brand, desktop links, and compact mobile controls.
 2. **Hero (`.hero`)** — positioning statement, short description, work link, and services link.
 3. **Services (`#services`)** — six service cards:
    - Video Production
@@ -129,31 +129,17 @@ Most navigation is handled with regular HTML anchors; no client-side router is u
 
 The design uses a charcoal, white, and esports-red palette. CSS variables near the top of `style.css` define the core colors and font stacks. A later refined-layout block adjusts some of the original dark-theme token values; the final value in the cascade is the active value.
 
-- Dark theme is the fallback when the visitor has no saved preference and their system does not request light mode.
-- Light theme changes the page surfaces, text, cards, and navigation.
-- The hero intentionally keeps its dark photographic treatment in both themes.
-- The fixed section navigator has separate dark-glass and light-glass treatments.
-
-The theme is applied through `data-theme="dark"` or `data-theme="light"` on the root `<html>` element.
+- The site uses a fixed dark color scheme across devices and does not offer a light-mode toggle.
 
 ### Layout and visual treatments
 
 - A centered `.wrap` constrains content width.
 - Grid and Flexbox are used for service cards, portfolio cards, process steps, About content, and contact content.
-- The hero uses `production-hero.jpg`, dark gradients for text contrast, a subtle grid texture, and an animated red accent.
+- The hero uses `production-hero.webp`, dark gradients for text contrast, a subtle grid texture, and an animated red accent.
 - Portfolio images use `object-fit: cover`; cards add a dark text gradient over their images.
 - Cards, buttons, and links use small hover transitions and red accent states.
 
 ## 7. Interactive behavior
-
-### Theme switching
-
-- The page reads the saved `yrt-theme` value from `localStorage`.
-- If there is no valid saved value, it checks `prefers-color-scheme`.
-- Theme buttons update the root theme, button labels/titles, and the `theme-color` metadata.
-- The selected theme is saved in `localStorage`.
-- On supported browsers, a circular View Transition animates the change. A reduced-motion check or fallback transition is used where appropriate.
-- The mobile theme button sits outside the hamburger menu so it remains directly accessible.
 
 ### Mobile menu
 
@@ -189,7 +175,7 @@ The CSS uses several overlapping breakpoints. The later rules in `style.css` ref
 | Breakpoint | Main behavior |
 |---|---|
 | `max-width: 900px` | Tablet adaptations; compact grids; fixed Instagram/Discord action bar; section navigator moves above the bottom edge |
-| `max-width: 820px` | Main desktop navigation is replaced with the mobile menu; separate theme button and hamburger are shown |
+| `max-width: 820px` | Main desktop navigation is replaced with the mobile menu and hamburger |
 | `max-width: 680px` | Narrow mobile layouts; portfolio becomes a horizontally scrollable snap carousel; content grids simplify |
 | `max-width: 380px` | Smaller typography and tighter layouts; mobile action bar is hidden and the section navigator moves near the screen bottom |
 
@@ -201,7 +187,6 @@ Safe-area insets (`env(safe-area-inset-bottom)`) are used for bottom overlays on
 - Main content uses header, navigation, main, section, and footer landmarks.
 - Images in content have descriptive `alt` text. Decorative SVGs use `aria-hidden="true"`.
 - Mobile menu state is exposed with `aria-expanded` and `aria-controls`.
-- Theme toggles have accessible labels and titles that reflect the next theme.
 - Service shortcuts use descriptive accessible names.
 - Keyboard focus receives a visible outline.
 - External links opened in a new tab use `rel="noopener"`.
@@ -247,7 +232,7 @@ Keep the current filenames in `img/` or update every corresponding `src` and CSS
 
 ### Change theme colors or layouts
 
-Edit CSS variables for global palette changes. Theme-specific selectors use `html[data-theme="light"]`. Responsive rules occur throughout `style.css`; update the final applicable rule rather than assuming an earlier declaration wins.
+Edit CSS variables for global palette changes. The site is intentionally dark-only. Responsive rules occur throughout `style.css`; update the final applicable rule rather than assuming an earlier declaration wins.
 
 ### Change contact destinations
 
@@ -269,10 +254,9 @@ Update the Instagram profile/post URLs and Discord invite wherever they appear i
 |---|---|
 | Page title and description | `index.html` `<head>` |
 | Main navigation | `index.html` `.nav-links` and `#mobileMenu` |
-| Theme preference | `index.html` inline script; `localStorage` key `yrt-theme` |
+| Color scheme | `index.html` root `data-theme="dark"` and `style.css` `:root` |
 | Site-wide colors and typography | `style.css` `:root` |
-| Light theme | `style.css` `html[data-theme="light"]` selectors |
-| Hero image | `img/production-hero.jpg` and `.hero` background rules |
+| Hero image | `img/production-hero.webp` and `.hero` background rules |
 | Service cards | `index.html` `#services`, styled by `.service-grid` |
 | Portfolio cards | `index.html` `#events`, styled by `.work-grid` and `.work-card` |
 | Jersey order information | `index.html` `#jerseys` |
