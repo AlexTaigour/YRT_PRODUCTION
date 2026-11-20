@@ -135,7 +135,7 @@ The design uses a charcoal, white, and esports-red palette. CSS variables near t
 
 - A centered `.wrap` constrains content width.
 - Grid and Flexbox are used for service cards, portfolio cards, process steps, About content, and contact content.
-- The hero uses `production-hero.webp`, dark gradients for text contrast, a subtle grid texture, and an animated red accent.
+- The hero pairs its production-photo background with a right-side collage of custom-shaped video-production and esports cards. The cards scale in on load, then float gently; reduced-motion preferences disable the animation.
 - Portfolio images use `object-fit: cover`; cards add a dark text gradient over their images.
 - Cards, buttons, and links use small hover transitions and red accent states.
 
@@ -159,7 +159,7 @@ The design uses a charcoal, white, and esports-red palette. CSS variables near t
 
 ### Reveals, counters, and motion
 
-- Hero copy enters with a short upward animation.
+- Hero copy enters with a short upward animation; the hero cards scale in and gently float at their final positions.
 - The hero's red accent and badge dot animate.
 - Cards and content blocks reveal as they enter the viewport.
 - About statistics count up when revealed.
